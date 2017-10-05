@@ -1,6 +1,6 @@
 package gameCharacters;
 
-public class gameCharacters {
+public abstract class gameCharacters {
 	private String name; 
 	private int healthPoints;
 	

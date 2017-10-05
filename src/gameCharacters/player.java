@@ -11,6 +11,13 @@ public class player extends gameCharacters {
 		super(name, healthPoints);
 		this.response = response; 
 	}
+	
+	public String getResponse() {
+		return response;
+	}
+	public void setResponse(String response) {
+		this.response = response;
+	}
 	public void retreat() {
 		
 	}	
