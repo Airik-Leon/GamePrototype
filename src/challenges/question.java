@@ -25,7 +25,7 @@ public class Question {
 	public Question() {
 		boolean flag = false; 
 		do {
-			int randomNumber = random.nextInt(5 ); 
+			int randomNumber = random.nextInt(10 ); 
 			this.question = easy[randomNumber] ; 
 			this.easyAnswer = easyAnswers[randomNumber]; 
 			
@@ -39,8 +39,6 @@ public class Question {
 				easyAnswers[randomNumber] = null; 
 			}
 		}while(flag); 
-
-		
 	}
 	public String getEasyQuestion() {
 		return this.question; 

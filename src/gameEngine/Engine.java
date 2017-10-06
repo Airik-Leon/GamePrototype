@@ -8,7 +8,6 @@ public class Engine {
 	private Scanner name = new Scanner(System.in);
 	private Scanner playerInput = new Scanner(System.in); 
 	private Player player = new Player();
-	private String tempQuestion; 
 	
 	public void gameStart() {
 		int count = 0; 
@@ -17,26 +16,25 @@ public class Engine {
 		
 		System.out.print("Welcome to Reboot, " +  player.getName() + " You are stranded with broken code and you must answer questions to leave  Reboot."
 				+ " There will be people to bother, harass, and maybe...help you if you can stay alive long enough. Here comes the first one!   ");
-		System.out.println("\n (The questions will be in  multiple choice format. Enter the corresponding number.)  ");
+		System.out.println("\n (The questions will be true or false or open ended.)  \n");
 		
 		do {
 			NPC tempNPC = new NPC();
 			
-			System.out.print(tempNPC.getName() + ": ");
+			System.out.print(tempNPC.getName());
 			tempNPC.askQuestion();
 			player.setResponse(playerInput.next()); 
 			if(tempNPC.answerCheck(player.getResponse())) {
 				count++;
 				if(count == 5) {
-					System.out.println("You have braved the perils of Reboot. May your mind find warm sands.");
+					System.out.println("You have braved the perils of Reboot " + player.getName() + ". May your mind find warm sands as you exit Reboot.");
 					gameEnd();
 				}
+				
 				Item tempItem= tempNPC.getItem();			
-				System.out.println(tempNPC.getName() + " decided to " + tempItem.getName());
-
+				System.out.println(tempNPC.getName().substring(0, tempNPC.getName().indexOf(':')) + " " + tempItem.getName());				
 				if(tempItem.getIncreaseHealth() == 10) {
 					
-					System.out.println( tempItem.getName());
 					player.restoreHealth(tempItem.getIncreaseHealth());
 					System.out.println("Your health is: " + player.getHealthPoints());
 					tempItem = null; 
@@ -44,9 +42,12 @@ public class Engine {
 					continue;
 					
 				}
-				else if(tempItem.getDamage()==10) {
+				else if(tempNPC.getItem().getDamage() == 10) {
+					player.poisonHealth(tempItem.getDamage());
+					System.out.println(tempNPC.getName().substring(0, tempNPC.getName().indexOf(':')) + " has tricked you and your health is now:  "  +player.getHealthPoints());
 					tempItem = null; 
 					tempNPC = null;
+					continue; 
 				}
 				else {
 					System.out.println("You have: " + player.getHealthPoints() + " health points");
@@ -57,9 +58,10 @@ public class Engine {
 			}
 			else {
 				player.loseHealth();
-				System.out.println("You lose health!!");
+				System.out.println("You lost some  health!!");
 				System.out.println("You have: " + player.getHealthPoints() + " health points");
 				if(player.getHealthPoints() <=0 || count >= 5) {
+					System.out.println("You have died a most terrible death due to your lack of knowledge with Java. R.I.P in Reboot. " + player.getName());
 					gameEnd();
 				}
 			}
@@ -67,7 +69,6 @@ public class Engine {
 		}while(true);
 	}
 	public void gameEnd() {
-		System.out.println("You have died a most terrible death. R.I.P in Reboot. " + player.getName());
 		System.exit(0);
 	}
 }

@@ -24,6 +24,9 @@ public class Player extends GameCharacters {
 		
 		this.healthPoints += x;
 	}
+	public void poisonHealth(int x) {
+		this.healthPoints = this.healthPoints - x;
+	}
 	public void getItem() {
 
 	}
