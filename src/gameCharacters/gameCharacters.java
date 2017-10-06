@@ -1,14 +1,14 @@
 package gameCharacters;
 
-public abstract class gameCharacters {
-	private String name; 
-	private int healthPoints;
+public abstract class GameCharacters {
+	protected String name; 
+	protected int healthPoints;
 	
-	public gameCharacters() {
+	public GameCharacters() {
 		name  = "";
 		healthPoints =   100;
 	}
-	public gameCharacters(String name, int healthPoints) {
+	public GameCharacters(String name, int healthPoints) {
 		this.name = name; 
 		this.healthPoints = healthPoints; 
 	}

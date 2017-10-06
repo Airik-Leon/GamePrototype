@@ -1,22 +1,31 @@
 package gameCharacters;
-
-public class player extends gameCharacters {
+public class Player extends GameCharacters {
 	String response;
 	
-	public player() {
+	public Player() {
 		super();
 		response = "";
 	}
-	public player(String name, int healthPoints, String response) {
+	public Player(String name, int healthPoints, String response) {
 		super(name, healthPoints);
 		this.response = response; 
 	}
 	
 	public String getResponse() {
-		return response;
+		return this.response;
 	}
 	public void setResponse(String response) {
 		this.response = response;
+	}
+	public void loseHealth() {
+		this.healthPoints -= 25;
+	}
+	public void restoreHealth(int x) {
+		
+		this.healthPoints += x;
+	}
+	public void getItem() {
+
 	}
 	public void retreat() {
 		
